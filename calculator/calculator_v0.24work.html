@@ -54,6 +54,12 @@
         .violet-border{
             border-color: #7749f8;
         }
+        .violet-text{
+            color: #7749f8;
+        }
+        .violet-text:hover{
+            font-weight: bolder
+        }
 
 
 
@@ -329,7 +335,7 @@ function infoImportant(){
 }
 function infoAbout(){
     item=document.getElementById('infoBoard')
-    item.querySelector('p').innerHTML='Дизайн, верстка, версия, бла-бла-бла. Все вопросы в ящик для предложений.'
+    item.querySelector('p').innerHTML="Дизайн: Александра Сирош, junior UX/UI designer, <a href = 'mailto: alexasiroshdesign@gmail.com' class='violet-text'>alexasiroshdesign@gmail.com</a></p><p>Идея, разработка: Марина Сенько, врач-анестезиолог-реаниматолог, junior Python/Django developer, <a class='violet-text' href = 'mailto: m.senko.belarus@gmail.com'>m.senko.belarus@gmail.com</a>"
     item.classList.add("bg-white", "m-2", "p-2", "br2");
 }
 
