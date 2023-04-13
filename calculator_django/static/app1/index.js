@@ -151,7 +151,7 @@ function infoImportant(){
 }
 function infoAbout(){
     item=document.getElementById('infoBoard')
-    item.querySelector('p').innerHTML="Дизайн: Александра Сирош, junior UX/UI designer, <a href = 'mailto: alexasiroshdesign@gmail.com' class='violet-text'>alexasiroshdesign@gmail.com</a></p><p>Идея, разработка: Марина Сенько, врач-анестезиолог-реаниматолог, junior Python/Django developer, <a class='violet-text' href = 'mailto: m.senko.belarus@gmail.com'>m.senko.belarus@gmail.com</a>"
+    item.querySelector('p').innerHTML="Дизайн: Александра Сирош, junior UX/UI designer, <a href = 'mailto: alexasiroshdesign@gmail.com' class='violet-text'>alexasiroshdesign@gmail.com</a></p><p>Идея, разработка: Марина Сенько, врач-анестезиолог-реаниматолог, junior Python/Django developer, <a class='violet-text' href = 'mailto: m.senko.belarus@gmail.com'>m.senko.belarus@gmail.com</a></p><p>Made with <a class='violet-text' href='https://getbootstrap.com/'>Bootstrap</a>"
     item.classList.add("bg-white", "m-2", "p-2", "br2");
 }
 
