@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{info_title}}</title>
+    <link rel="stylesheet" href="{% static 'app1/base.css' %}">
+    
+      
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm grey" >
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Калькулятор</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{% url 'download' %}">Скачать</a>
+                    <a class="nav-link disabled" href="#">В разработке</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class=" container col-12 my-2">
+        <div class="p-3  br bc">
+        <h1 class="p-2 border-bottom  border-secondary">{{info_title}}</h1>
+        <p class="p-2" id="jsAlert">{{info_description}}</p>
+    </div></div>
+    <div class="container  my-2">
+        {%block bodyblock1%} {%endblock%}
+    </div>
+    <div class="container  my-2">
+        {%block bodyblock2%} {%endblock%}
+    </div>   
+{%block blockscript%} {%endblock%}
+</body>
+</html>
+
+
+<!--   -->

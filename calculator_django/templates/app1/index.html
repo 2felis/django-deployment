@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends 'app1/base.html' %}
+{% load static %}
+
+
+{%block bodyblock1%}
+<div class="row">
+    <div class="col-12 col-md-8 mt-1 pt-1">
+    <div class="p-3  br bc">
+        <div class="pt-1 text-center bolder">План парентерального питания</div>
+        <p> Выберите требуемые препараты и количество флаконов каждого препарата.</span>
+        <form id="selectionForm">
+            <div class="input-group mb-1 pt-2 selection">
+                <select class="form-select formulations" onchange="calculate()">
+                    <option value=0 >Препарат:</option>
+                    <option value="Глюкоза 5%, 400 мл">Глюкоза 5%, 400 мл</option>
+                    <option value="Глюкоза 10%, 400 мл">Глюкоза 10%, 400 мл</option>
+                    <option value="Глюкоза 20%, 400 мл">Глюкоза 20%, 400 мл</option>
+                    <option value="Глюкоза 40%, 400 мл">Глюкоза 40%, 400 мл</option>
+                    <option value="Вамин 14, 500 мл">Вамин 14, 500 мл</option>
+                    <option value="Вамин 18, 500 мл">Вамин 18, 500 мл</option>
+                    <option value="Интралипид 10%, 500 мл">Интралипид 10%, 500 мл</option>
+                    <option value="Интралипид 20%, 500 мл">Интралипид 20%, 500 мл</option>
+                </select>
+                <div class="">
+                <label class='btn btn-light qty'>0
+                    <input type="radio" value=0 name="RadioQty0" checked onchange="calculate()">
+                </label>
+                <label class='btn btn-light'>1
+                    <input type="radio"  value=1 name="RadioQty0" onchange="calculate()">
+                </label>
+                <label class='btn btn-light'>2
+                    <input type="radio" value=2 name="RadioQty0" onchange="calculate()">
+                </label>
+                <label class='btn btn-light'>3
+                    <input type="radio" value=3 name="RadioQty0" onchange="calculate()">
+                </label>
+                <label class='btn btn-light'>4
+                    <input type="radio" value=4 name="RadioQty0" onchange="calculate()">
+                </label>
+                </div>
+            </div>
+        </form>               
+        <div class="input-group mb-3 justify-content-center" >
+            <button class="btn btn-light border border-secondary violet mx-1" type="button" onclick="addAnother()" id="addAnotherBtn">Еще препарат</button>
+            <button class="btn btn-light border border-secondary violet mx-1" type="button" onclick="calculate()">Посчитать</button>
+            <button class="btn btn-light border border-secondary violet mx-1" type="button" onclick="window.location.reload()">Сначала</button>
+        </div>          
+    </div></div>
+
+    <div class="col-12 col-md-4 mt-2">
+        <div class="p-3  br bc" >
+            <div class="py-2 text-center bolder">Параметры пациента</div>
+            <div class="form-floating my-2">
+                <input type="text" class="form-control" id="weight" placeholder="Вес, кг:" onchange="calculate()" oninput="calculate()">
+                <label for="weight">Вес, кг: </label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="heigth" placeholder="Рост, см:" onchange="calculate()" oninput="calculate()">
+                <label for="heigth">Рост, см:</label>
+            </div>
+        
+            <div class="input-group mb-1">
+                <span class="input-group-text">Пропофол 1%:</span>
+                <span class="input-group-text form-control" id="propofolDosageLabel">0 мл/ч</span> 
+
+            </div> 
+            <div class="input-group mb-1">                 
+                <input type="range" class="form-range" min="0" max="20" value="0" id="propofolRange" oninput="propofolDosageShow()" onchange="propofolDoseShow()">
+            </div>
+        </div>
+    </div>            
+</div>
+{%endblock%}
+
+
+{%block bodyblock2%}
+<div class="row">
+    <div class="col-12 col-md-9 my-1">
+        <div class="p-3  br bc ">
+            <div class="p-2 text-center bolder" >Результаты текущего расчёта</div>
+            <div class="container p-2 mt-2 bg-white border  br2 ">
+                <div class="container calculatedResults ">
+                <p>ИМТ пациента: </p>
+                <p class="bolder">Ваш план парентерального питания: </p>
+                <p>Общий объём растворов: </p>
+                <p>Общая энергетическая ценность: </p>
+                <p>Аминокислоты: </p>
+                <p>Жиры: </p>
+                <p>Углеводы: </p>
+                </div>                   
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 my-1">
+        <div class="p-3  br bc ">
+            <div class=" pt-1 text-center">Дополнительная информация</div>
+            <div class="text-center m-1" >
+                <button class="btn  btn-light border border-secondary violet my-1" type="button" onclick="infoImportant()">Важно знать!</button>
+                <button class="btn btn-light border-2 border-primary my-1" type="button" onclick="infoAbout()">О программе</button>
+            </div>
+            <div class="container text-left" id="infoBoard">
+                <p id="infoBoard"></p>                                       
+            </div>
+        </div>               
+    </div>
+</div>
+{%endblock%}
+
+{%block blockscript%}
+<script src="{% static 'app1/index.js' %}"></script>
+{%endblock%}

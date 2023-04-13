@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'app1/base.html' %}
+{% load static %}
+
+
+{%block bodyblock1%}
+<div class="row">
+    <div class="col-12 col-md-9 mt-1 pt-1">
+    <div class="p-3  br bc">
+        <div class="pt-1 text-center bolder">Оффлайн-приложение:</div>
+        <ul>
+            <li>Один файл минимального размера (232 кб).</li>
+            <li>Не требует установки - скачайте и пользуйтесь.</li>
+            <li>Открывается в любом современном интернет-браузере.</li>
+            <li>Адаптировано для удобства работы на компьютере, планшете или телефоне.</li>
+        </ul>                
+    </div></div>           
+
+    <div class="col-12 col-md-3 mt-1 pt-1">
+        <div class="p-3  br bc">
+            <form action="{% url 'download' %}"  method="post">
+                {%csrf_token%}
+                <input type="submit" class="btn  btn-light border border-secondary violet my-1"  value="Скачать приложение" />
+            </form>
+            <p>Калькулятор парентерального питания, версия 0.25</p>
+        </div>
+    </div>
+</div>
+{%endblock%}
