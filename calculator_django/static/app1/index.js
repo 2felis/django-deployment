@@ -23,14 +23,19 @@ function summ (form1, form2, n_form2) {  //takes in 2 Formulation objects and in
 
 //all available pn formulations stored here
 const pharmacy=[
-    new Formulation('Глюкоза 5%, 400 мл', 400, 0, 0, 20, 80),
-    new Formulation('Глюкоза 10%, 400 мл', 400, 0, 0, 40, 160),
-    new Formulation('Глюкоза 20%, 400 мл', 400, 0, 0, 80, 320),
+    new Formulation('Глюкоза 5%, 500 мл', 500, 0, 0, 25, 100),
+    new Formulation('Глюкоза 10%, 500 мл', 500, 0, 0, 50, 200),
+    new Formulation('Глюкоза 20%, 500 мл', 500, 0, 0, 100, 400),
     new Formulation('Глюкоза 40%, 400 мл', 400, 0, 0, 160, 640),
     new Formulation('Вамин 14, 500 мл', 500, 42.5, 0, 0, 175),
     new Formulation('Вамин 18, 500 мл', 500, 57, 0, 0, 230),
+    new Formulation('Гамамин 40, 400 мл', 400, 16, 0, 0, 148),
     new Formulation('Интралипид 10%, 500 мл', 500, 0, 50, 0, 500),
     new Formulation('Интралипид 20%, 500 мл', 500, 0, 100, 0, 1000),
+    new Formulation('Кабивен 900 ккал, 1026 мл', 1026, 34, 40, 100, 900),
+    new Formulation('Кабивен 1400 ккал, 1540 мл', 1540, 51, 60, 150, 1400),
+    new Formulation('Кабивен 1900 ккал, 2053 мл', 2053, 68, 80, 200, 1900),
+    new Formulation('Кабивен 2300 ккал, 2566 мл', 2566, 85, 100, 250, 2300),
 ]  //propofol values stored in calculate()
 
 
@@ -146,7 +151,7 @@ function calculate(){
 //info block
 function infoImportant(){
     item=document.getElementById('infoBoard')
-    item.querySelector('p').innerHTML='Расчётные показатели данного калькулятора являются ориентировочными и ни в коей мере не заменяют врачебные назначения с учетом конкретной клинической ситуации.'
+    item.querySelector('p').innerHTML="Расчётные показатели калькулятора являются ориентировочными и не заменяют врачебные назначения с учетом конкретной клинической ситуации.</p><p>Информация о содержании нутриентов и энергетической ценности препаратов взята из инструкций по применению на <a class='violet-text' href='https://www.vidal.by/'>vidal.by/</a>"
     item.classList.add("bg-white", "m-2", "p-2", "br2");  
 }
 function infoAbout(){
