@@ -76,9 +76,9 @@ function addAnother (){
 
 
 
-function propofolDoseShow(){
-    let propofolDose=document.getElementById('propofolRange').value;
-    document.getElementById('propofolDoseLabel').innerHTML=propofolDose+' мл/ч';
+function propofolDosageShow(){
+    let propofolDosage=document.getElementById('propofolRange').value;
+    document.getElementById('propofolDosageLabel').innerHTML=propofolDosage+' мл/ч';
     calculate();
 }
 
@@ -107,8 +107,8 @@ function calculate(){
 
 
     //adding propofol 
-    let propofolDose=document.getElementById('propofolRange').value;
-    let propofol=new Formulation('', (Math.round(propofolDose*24/10))*10, 0, propofolDose*2.4, 0, propofolDose*26.4);
+    let propofolDosage=document.getElementById('propofolRange').value;
+    let propofol=new Formulation('', (Math.round(propofolDosage*24/10))*10, 0, propofolDosage*2.4, 0, propofolDosage*26.4);
     result=summ(result, propofol, 1);
 
     //calculating bmi
