@@ -1,6 +1,7 @@
-document.getElementById('jsAlert').innerHTML='Воспользуйтесь им для расчёта нутритивной и энергетической ценности назначаемого вами парентерального питания. Надеемся, он будет вам полезен.'
+
+    document.getElementById('jsAlert').innerHTML='Воспользуйтесь им для расчёта нутритивной и энергетической ценности назначаемого вами парентерального питания. Надеемся, он будет вам полезен.'
     
-class Formulation{
+    class Formulation{
     constructor(name='', volume=0, prot=0, fat=0, carb=0, energy=0){
         this.name=name;
         this.volume=volume;
@@ -9,7 +10,21 @@ class Formulation{
         this.carb=carb;
         this.energy=energy;
     };
-}    
+    protCal(){
+        if(this.prot==0){
+            return 0;
+        }
+        else if((this.carb==0)&&(this.fat==0)){
+            return this.energy;
+        }
+        else{
+            let empiricalProtCal=this.prot*4;
+            let empiricalNonProtCal=(this.carb*4)+(this.fat*9);
+            return empiricalProtCal/(empiricalNonProtCal+empiricalProtCal)*this.energy;
+        }
+        };
+    }
+    
     
 function summ (form1, form2, n_form2) {  //takes in 2 Formulation objects and integer. returns 1 Formulation object where properties are sums of properties of 1st object and (2nd obj * integer)//
     let newForm=new Formulation();
@@ -25,6 +40,7 @@ function summ (form1, form2, n_form2) {  //takes in 2 Formulation objects and in
 const pharmacy=[
     new Formulation('Глюкоза 5%, 500 мл', 500, 0, 0, 25, 100),
     new Formulation('Глюкоза 10%, 500 мл', 500, 0, 0, 50, 200),
+    new Formulation('Глюкоза 20%, 400 мл', 400, 0, 0, 80, 320),
     new Formulation('Глюкоза 20%, 500 мл', 500, 0, 0, 100, 400),
     new Formulation('Глюкоза 40%, 400 мл', 400, 0, 0, 160, 640),
     new Formulation('Вамин 14, 500 мл', 500, 42.5, 0, 0, 175),
@@ -60,9 +76,9 @@ function addAnother (){
 
 
 
-function propofolDosageShow(){
-    let propofolDosage=document.getElementById('propofolRange').value;
-    document.getElementById('propofolDosageLabel').innerHTML=propofolDosage+' мл/ч';
+function propofolDoseShow(){
+    let propofolDose=document.getElementById('propofolRange').value;
+    document.getElementById('propofolDoseLabel').innerHTML=propofolDose+' мл/ч';
     calculate();
 }
 
@@ -91,8 +107,8 @@ function calculate(){
 
 
     //adding propofol 
-    let propofolDosage=document.getElementById('propofolRange').value;
-    let propofol=new Formulation('', (Math.round(propofolDosage*24/10))*10, 0, propofolDosage*2.4, 0, propofolDosage*26.4);
+    let propofolDose=document.getElementById('propofolRange').value;
+    let propofol=new Formulation('', (Math.round(propofolDose*24/10))*10, 0, propofolDose*2.4, 0, propofolDose*26.4);
     result=summ(result, propofol, 1);
 
     //calculating bmi
@@ -135,7 +151,7 @@ function calculate(){
         paragraphs[0].innerHTML='ИМТ пациента: '
     }
     paragraphs[2].innerHTML='Общий объём: '+Math.round(result.volume)+' мл,';
-    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал, ';
+    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал (из них белковая: около '+Math.round(result.protCal())+' ккал), ';
     if (parseInt(document.getElementById('weight').value)>0){
         paragraphs[3].innerHTML+=(Math.round(result.energy/parseInt(document.getElementById('weight').value))+' ккал/кг.')
     }
@@ -147,17 +163,13 @@ function calculate(){
     paragraphs[6].innerHTML='Углеводы: '+Math.round(result.carb)+' г.';
 }
 
-
 //info block
 function infoImportant(){
-    item=document.getElementById('infoBoard')
-    item.querySelector('p').innerHTML="Расчётные показатели калькулятора являются ориентировочными и не заменяют врачебные назначения с учетом конкретной клинической ситуации.</p><p>Информация о содержании нутриентов и энергетической ценности препаратов взята из инструкций по применению на <a class='violet-text' href='https://www.vidal.by/'>vidal.by/</a>"
-    item.classList.add("bg-white", "m-2", "p-2", "br2");  
+    document.getElementById('infoImportant').classList.remove("hidden");
+    document.getElementById('infoAbout').classList.add("hidden");  
 }
 function infoAbout(){
-    item=document.getElementById('infoBoard')
-    item.querySelector('p').innerHTML="Дизайн: Александра Сирош, junior UX/UI designer, <a href = 'mailto: alexasiroshdesign@gmail.com' class='violet-text'>alexasiroshdesign@gmail.com</a></p><p>Идея, разработка: Марина Сенько, врач-анестезиолог-реаниматолог, junior Python/Django developer, <a class='violet-text' href = 'mailto: m.senko.belarus@gmail.com'>m.senko.belarus@gmail.com</a></p><p>Made with <a class='violet-text' href='https://getbootstrap.com/'>Bootstrap</a>"
-    item.classList.add("bg-white", "m-2", "p-2", "br2");
+    document.getElementById('infoImportant').classList.add("hidden");
+    document.getElementById('infoAbout').classList.remove("hidden");
 }
-
 
