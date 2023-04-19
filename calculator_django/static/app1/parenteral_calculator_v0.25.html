@@ -215,18 +215,15 @@
         this.carb=carb;
         this.energy=energy;
     };
-    protCal(){
-        if(this.prot==0){
-            return 0;
-        }
-        else if((this.carb==0)&&(this.fat==0)){
-            return this.energy;
-        }
-        else{
+    protCalPerc(){
             let empiricalProtCal=this.prot*4;
             let empiricalNonProtCal=(this.carb*4)+(this.fat*9);
-            return empiricalProtCal/(empiricalNonProtCal+empiricalProtCal)*this.energy;
-        }
+            if((empiricalNonProtCal+empiricalProtCal)==0){
+                return 0
+            } 
+            else{
+                return empiricalProtCal/(empiricalNonProtCal+empiricalProtCal)*100;
+            }
         };
     }
     
@@ -356,7 +353,7 @@ function calculate(){
         paragraphs[0].innerHTML='ИМТ пациента: '
     }
     paragraphs[2].innerHTML='Общий объём: '+Math.round(result.volume)+' мл,';
-    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал (из них белковая: около '+Math.round(result.protCal()/result.energy*100)+'%), ';
+    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал (из них белковая: около '+Math.round(result.protCalPerc())+'%), ';
     if (parseInt(document.getElementById('weight').value)>0){
         paragraphs[3].innerHTML+=(Math.round(result.energy/parseInt(document.getElementById('weight').value))+' ккал/кг.')
     }

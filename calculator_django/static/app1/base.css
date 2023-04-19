@@ -64,6 +64,9 @@
         .violet-text:hover{
             font-weight: 600
         }
+        .hidden{
+            display: none;
+        }
 
 
 
