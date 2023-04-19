@@ -151,7 +151,7 @@ function calculate(){
         paragraphs[0].innerHTML='ИМТ пациента: '
     }
     paragraphs[2].innerHTML='Общий объём: '+Math.round(result.volume)+' мл,';
-    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал (из них белковая: около '+Math.round(result.protCal())+' ккал), ';
+    paragraphs[3].innerHTML='Общая энергетическая ценность: '+Math.round(result.energy)+' ккал (из них белковая: около '+Math.round(result.protCal()/result.energy*100)+'%), ';
     if (parseInt(document.getElementById('weight').value)>0){
         paragraphs[3].innerHTML+=(Math.round(result.energy/parseInt(document.getElementById('weight').value))+' ккал/кг.')
     }
