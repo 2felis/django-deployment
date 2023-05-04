@@ -1,5 +1,5 @@
 
-    document.getElementById('jsAlert').innerHTML='Воспользуйтесь им для расчёта нутритивной и энергетической ценности назначаемого вами парентерального питания. Надеемся, он будет вам полезен.'
+    document.getElementById('jsAlert').innerHTML='Рассчитайте нутритивную и энергетическую ценность назначаемого вами парентерального питания.'
     
     class Formulation{
     constructor(name='', volume=0, prot=0, fat=0, carb=0, energy=0){
