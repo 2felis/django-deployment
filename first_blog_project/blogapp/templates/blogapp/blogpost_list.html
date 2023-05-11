@@ -1,0 +1,21 @@
+{%extends 'blogapp/base.html'%}
+
+{%block pagetitle%}
+<h1>Recent entries</h1>
+{%endblock%}
+
+
+{%block content%}
+<div class="container">
+    {%for blogpost in blogpost_list%}
+    <div class="card">
+        <h4><a href="{%url 'blogpost_detail' pk=blogpost.pk %}">{{blogpost.title}}</a></h4>
+        <p>{{blogpost.text|safe}}</p>
+        <div class="extrainfo">
+            <p>Published: {{blogpost.published_date}}</p>
+            <p class="comments"><a href="{%url 'blogpost_detail' pk=blogpost.pk %}">Comments: {{blogpost.approve_comments.count}}</a></p>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

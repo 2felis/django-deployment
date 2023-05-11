@@ -1,0 +1,17 @@
+{%extends 'blogapp/base.html'%}
+
+{%block pagetitle%}
+<h1>Confirm delete</h1>
+{%endblock%}
+
+
+{%block content%}
+<div class="container card">
+    <form method="post">
+        {%csrf_token%}
+        <p>Are you sure you want to delete "{{object}}"?</p>
+        <a href="{%url 'blogpost_detail' pk=object.pk%}" class="btn btn-outline-secondary btn-publish">No</a>
+        <input type="submit" class="btn btn-outline-secondary btn-delete" value="Yes">
+    
+</div>
+{%endblock%}

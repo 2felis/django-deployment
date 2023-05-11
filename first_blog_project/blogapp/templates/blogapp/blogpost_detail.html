@@ -1,0 +1,61 @@
+{%extends 'blogapp/base.html'%}
+
+{%block pagetitle%}
+<h1>{{blogpost.title|safe|linebreaksbr}}</h1>
+{%endblock%}
+
+
+{%block content%}
+<div class="container card">
+    <p>Author: {{blogpost.author}}</p>
+    <p class="text-main">{{blogpost.text|safe}}</p>
+    <div class="extrainfo">
+        {%if blogpost.published_date%}
+        <p>Published: {{blogpost.published_date}}</p>
+        {%else%}
+        <p>Created: {{blogpost.create_date}}</p>
+        {%endif%}
+        {%if user.is_authenticated and not blogpost.published_date%}
+        <a href="{%url 'blogpost_publish' pk=blogpost.pk %}" class="btn btn-outline-secondary btn-publish">Publish</a>
+        {%endif%}
+        {%if user.is_authenticated%}
+        <a href="{%url 'blogpost_edit' pk=blogpost.pk %}" class="btn btn-outline-secondary btn-edit">Edit post</a>
+        <a href="{%url 'blogpost_remove' pk=blogpost.pk %}" class="btn btn-outline-secondary btn-delete">Delete post</a>
+        {%endif%}
+    </div>
+</div>
+<div class="container">
+    <div class="card" style="justify-content: center;">
+    <a href="{%url 'add_comment_to_post' pk=blogpost.pk %}" class="btn btn-outline-secondary btn-publish">Add comment</a>         
+    </div>
+</div>
+    <div class="row">
+        <div class="col-10 m-auto"> 
+            <h1>Comments</h1>           
+            {%for comment in blogpost.comments.all%}
+                {%if user.is_authenticated or comment.approved_comment%}
+                
+                <div class="card">
+                    <p class="">{{comment.text|safe|linebreaks}}</p>
+                    <div class="extrainfo">
+                        <p>Date: {{comment.create_date}}</p>
+                        <p class="comments">Posted by: {{comment.author}}</p>
+                        {%if not comment.approved_comment%}
+                        <a href="{%url 'comment_approve' pk=comment.pk %}" class="btn btn-outline-secondary btn-publish">Approve comment</a>
+                        {%endif%}
+                        <a href="{%url 'comment_remove' pk=comment.pk %}" class="btn btn-outline-secondary btn-delete">Delete comment</a>
+        
+                    </div>
+
+                </div>
+                {%endif%}
+            {%empty%}
+                <div class="container card">
+                    <p>No comments yet</p>
+                </div>
+           {%endfor%}
+        </div>
+
+    </div>
+
+{%endblock%}  

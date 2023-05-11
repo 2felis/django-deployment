@@ -1,0 +1,21 @@
+{%extends 'blogapp/base.html'%}
+
+{%block pagetitle%}
+<h1>Drafts</h1>
+{%endblock%}
+
+
+{%block content%}
+<div class="container">
+    {%for blogpost in blogpost_list%}
+    <div class="card">
+        <h4><a href="{%url 'blogpost_detail' pk=blogpost.pk %}">{{blogpost.title}}</a></h4>
+        <p>{{blogpost.text|safe|truncatechars:200}}</p>
+        <div class="extrainfo">
+            <p>Created: {{blogpost.create_date|date:"D M Y"}}</p>
+            <a href="{%url 'blogpost_detail' pk=blogpost.pk%}">Read more</a>
+        </div>
+    </div>
+    {%endfor%}
+
+{%endblock%}    

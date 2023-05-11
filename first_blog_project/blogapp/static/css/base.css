@@ -1,0 +1,69 @@
+:root{
+    --colorlight: #B5EF8A;
+    --colordark: #65524D;
+    --coloraccent1: #817E9F;
+    --coloraccent2: #7FC29B;
+    --colordanger: #E2856E;
+    --fontmain: 'Oxygen';
+}
+body{
+    background-size: cover;
+    background-image: linear-gradient(to bottom left, var(--colorlight),var(--coloraccent2), var(--coloraccent1));
+    font-size: smaller;
+}
+.text-main{
+    font-size: larger;
+}
+.card{
+    margin: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px #65524D;
+    border-radius: 0 1rem ;
+}
+.card p{
+    color: var(--colordark);
+}
+.card a{
+    color: var(--coloraccent1);
+    font-weight: 500;
+}
+.card-login{
+    display: grid;
+    place-items: center;
+}
+.extrainfo{
+    display: inline-flex;
+}
+.extrainfo p{
+    padding-right: 1rem;
+}
+@media only screen and (min-width: 768px) {
+    .extrainfo{
+        display: block;    
+    }
+}
+.comments{
+    opacity: 70%;
+}
+.card:hover{
+    box-shadow: 0 8px 16px #65524D;
+    transition: 0.3s;
+}
+h1, h3, h4, .navbar-brand{
+    font-family: var(--fontmain);
+}
+h1:hover, h3:hover, h4:hover, .navbar-brand:hover{
+    text-shadow: 1px 1px var(--coloraccent1);
+}
+h1{
+    text-align: center;
+}
+.btn-edit:hover{
+    background-color: var(--coloraccent2);
+}
+.btn-delete:hover{
+    background-color: var(--colordanger);
+}
+.btn-publish:hover{
+    background-color: var(--coloraccent1);
+}

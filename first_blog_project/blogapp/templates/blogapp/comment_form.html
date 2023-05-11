@@ -1,0 +1,19 @@
+{%extends 'blogapp/base.html'%}
+
+{%block pagetitle%}
+<h1>New comment</h1>
+{%endblock%}
+
+
+{%block content%}
+<div class="container card">
+    <form class="" method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-outline-secondary btn-publish" value="Post comment"></button>
+    </form>
+    <script>
+        var editor=new MediumEditor('.editable');
+    </script>
+</div>
+{%endblock%}
